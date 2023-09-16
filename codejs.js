@@ -69,6 +69,7 @@ function optionMenuTres(arrayListaProductos){
     if (deleteId !== -1){
         arrayListaProductos.splice(deleteId, 1);
         alert("Producto eliminado!... La base de datos se ha modificado");
+        arrayListaProductos.sort((a, b) => a.id - b.id); //arrayListaProductos.sort();
     } else {
         alert("ID no encontrado");
     }
@@ -94,6 +95,7 @@ function optionMenuCuatro(arrayListaProductos) {
         const nuevoProducto = { id: nuevoId, nombre: nuevoNombre, precio: nuevoPrecio };
         arrayListaProductos.push(nuevoProducto);
         alert("Producto agregado con éxito.");
+        arrayListaProductos.sort((a, b) => a.id - b.id); //arrayListaProductos.sort();
     } else {
         alert("El precio ingresado no es válido. El producto no fue agregado.");
     }
@@ -136,4 +138,5 @@ function main() {
         }
     }
 }
+arrayListaProductos.sort((a, b) => a.id - b.id); //arrayListaProductos.sort();
 main();
