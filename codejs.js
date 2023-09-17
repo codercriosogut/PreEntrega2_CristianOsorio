@@ -15,6 +15,11 @@ const arrayListaProductos = [
     { id: 4, nombre: "Mouse", precio: 10000},
 ];
 
+//obtener opcion del menu por ID
+function optionMenuId(arrayMenu, id){
+    return arrayMenu.find((menu) => menu.id == id);
+}
+
 //Menú Principal
 function optionMenu(arrayMenu){
     let opciones = "Opciones disponibles : \n";
@@ -36,11 +41,6 @@ function optionMenuUno(arrayListaProductos){
             PRECIO: ${menuUno.precio}\n`;
     }
     return opcionesProductos;
-}
-
-//obtener opcion del menu por ID
-function optionMenuId(arrayMenu, id){
-    return arrayMenu.find((menu) => menu.id == id);
 }
 
 //modificar precio del producto
