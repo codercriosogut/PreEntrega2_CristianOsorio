@@ -105,7 +105,7 @@ function optionMenuCuatro(arrayListaProductos) {
 function main() {
     while (true) {
         alert("BIENVENIDO AL MENU PRINCIPAL DE INVENTARIO")
-        const userInput = parseInt(prompt("Ingrese el ID\n" + optionMenu(arrayMenu)));
+        const userInput = parseInt(prompt("Ingrese el ID :\n" + optionMenu(arrayMenu)));
         const seleccionarOpcionMenuMain = optionMenuId(arrayMenu, userInput);
         if (!seleccionarOpcionMenuMain) {
             alert("Opción ingresada no válida. Por favor, ingrese un ID válido.");
