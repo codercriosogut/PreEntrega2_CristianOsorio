@@ -1,9 +1,9 @@
 //Menu Principal Inventario - ArrayMenu
 const arrayMenu = [
-    { id: 1, nombre: "Listar Productos"},
-    { id: 2, nombre: "Modificar lista de precios de los productos"},
+    { id: 1, nombre: "Lista de Productos"},
+    { id: 2, nombre: "Modificar Precios"},
     { id: 3, nombre: "Eliminar Productos"},
-    { id: 4, nombre: "Ingresar Nuevos Productos"},
+    { id: 4, nombre: "Agregar Nuevos Productos"},
 ];
 
 //lista de productos ya creados en el arreglo
@@ -22,7 +22,7 @@ function optionMenuId(arrayMenu, id){
 
 //Menú Principal
 function optionMenu(arrayMenu){
-    let opciones = "Opciones disponibles : \n";
+    let opciones = "Opciones disponibles : \n"; //MENSAJE3
     for (const menu of arrayMenu){
         opciones +=`
         ID: ${menu.id}
@@ -31,9 +31,10 @@ function optionMenu(arrayMenu){
     return opciones;
 }
 
-//listar menu de productos
+//listar productos, ID NOMBRE y PRECIO
+//optionMenuUno(arrayListaProductos)
 function optionMenuUno(arrayListaProductos){
-    let opcionesProductos = "Productos Disponibles : \n";
+    let opcionesProductos = "Productos Disponibles : \n"; //MENSAJE4
     for (const menuUno of arrayListaProductos){
             opcionesProductos +=`
             ID: ${menuUno.id}
@@ -52,7 +53,7 @@ function optionMenuDos(arrayListaProductos){
         const editPrecio = parseInt(prompt("ingrese el monto a modificar:"));
         if (!isNaN(editPrecio)){
             arrayListaProductos[modifyId].precio = editPrecio;
-            alert("El precio del producto ha sido modificado");
+            alert("Producto modificado... \nLa base de datos se ha actualizado");
         } else {
             alert("El valor ingresado no es válido");
         }
@@ -62,73 +63,72 @@ function optionMenuDos(arrayListaProductos){
 }
 
 //eliminar productos
-//alert(optionMenuTres(indiqueIdProductos));
+//optionMenuTres(arrayListaProductos);
 function optionMenuTres(arrayListaProductos){
-    let opcionesN3 = parseInt(prompt("Ingrese el ID a eliminar:\n" + optionMenuUno(arrayListaProductos)));
+    let opcionesN3 = parseInt(prompt("Ingrese el ID a eliminar:\n" + optionMenuUno(arrayListaProductos))); //MENSAJE6
     const deleteId = arrayListaProductos.findIndex((producto) => producto.id === opcionesN3);
     if (deleteId !== -1){
         arrayListaProductos.splice(deleteId, 1);
-        alert("Producto eliminado!... La base de datos se ha modificado");
+        alert("Producto eliminado!... \nLa base de datos se ha actualizado"); //MENSAJE6
         arrayListaProductos.sort((a, b) => a.id - b.id); //arrayListaProductos.sort();
     } else {
         alert("ID no encontrado");
     }
 }
 
-//Ingresar Mas Productos al Inventario
-//case 4:
-//    alert(`4Ha seleccionado la opción: ${seleccionarOpcionMenuMain.nombre}`);
-//    optionMenuCuatro(arrayListaProductos);
+//Agregar nuevos productos al inventario
+//optionMenuCuatro(arrayListaProductos);
 function optionMenuCuatro(arrayListaProductos) {
     let nuevoId, nuevoNombre, nuevoPrecio;
     let productoExistente;
     do {
-        nuevoId = parseInt(prompt("Ingrese un nuevo ID:"));
+        nuevoId = parseInt(prompt("Ingrese un nuevo ID:")); //MENSAJE7
         productoExistente = arrayListaProductos.find((producto) => producto.id === nuevoId);
         if (productoExistente) {
-            alert("El ID ingresado ya existe en la base de datos. Por favor, ingrese un ID único.");
+            alert("El ID ingresado ya existe en la base de datos. \nPor favor, ingrese un ID único.");
         }
     } while (productoExistente);
-    nuevoNombre = prompt("Ingrese el nombre del nuevo producto:");
-    nuevoPrecio = parseInt(prompt("Ingrese el precio del nuevo producto:"));
+    nuevoNombre = prompt("Ingrese el nombre del nuevo producto:"); //MENSAJE7
+    nuevoPrecio = parseInt(prompt("Ingrese el precio del nuevo producto:")); //MENSAJE7
     if (!isNaN(nuevoPrecio)) {
         const nuevoProducto = { id: nuevoId, nombre: nuevoNombre, precio: nuevoPrecio };
         arrayListaProductos.push(nuevoProducto);
-        alert("Producto agregado con éxito.");
+        alert("Producto agregado con éxito... \nLa base de datos se ha actualizado"); //MENSAJE7
         arrayListaProductos.sort((a, b) => a.id - b.id); //arrayListaProductos.sort();
     } else {
         alert("El precio ingresado no es válido. El producto no fue agregado.");
     }
 }
 
-//funcion principal
+
+//funcion menú principal
 function main() {
     while (true) {
-        alert("BIENVENIDO AL MENU PRINCIPAL DE INVENTARIO")
-        const userInput = parseInt(prompt("Ingrese el ID :\n" + optionMenu(arrayMenu)));
+        alert("BIENVENIDO AL MENU PRINCIPAL DE INVENTARIO") //MENSAJE1
+        const userInput = parseInt(prompt("Ingrese el ID :\n" + optionMenu(arrayMenu))); //MENSAJE2 + MENSAJE3
         const seleccionarOpcionMenuMain = optionMenuId(arrayMenu, userInput);
         if (!seleccionarOpcionMenuMain) {
-            alert("Opción ingresada no válida. Por favor, ingrese un ID válido.");
+            alert("La Opción ingresada no es válida. Por favor, ingrese un ID correcto.");
             continue;
         }
         switch (seleccionarOpcionMenuMain.id) {
             case 1:
-                alert(`Ha seleccionado la opción: ${seleccionarOpcionMenuMain.nombre}`);
+                alert(`Ha seleccionado la opción: \n-${seleccionarOpcionMenuMain.nombre}`); //MENSAJE4
                 alert(optionMenuUno(arrayListaProductos));
                 alert("Regresando al menu Principal");
                 break;
             case 2:
-                alert(`Ha seleccionado la opción: ${seleccionarOpcionMenuMain.nombre}`);
+                alert(`Ha seleccionado la opción: \n-${seleccionarOpcionMenuMain.nombre}`); //MENSAJE5
                 optionMenuDos(arrayListaProductos);
                 alert("Regresando al menu Principal");
                 break;
             case 3:
-                alert(`Ha seleccionado la opción: ${seleccionarOpcionMenuMain.nombre}`);
+                alert(`Ha seleccionado la opción: \n-${seleccionarOpcionMenuMain.nombre}`); //MENSAJE6
                 optionMenuTres(arrayListaProductos);
                 alert("Regresando al Menu Principal");
                 break;
             case 4:
-                alert(`Ha seleccionado la opción: ${seleccionarOpcionMenuMain.nombre}`);
+                alert(`Ha seleccionado la opción: \n-${seleccionarOpcionMenuMain.nombre}`); //MENSAJE7
                 optionMenuCuatro(arrayListaProductos);
                 alert("Regresando al Menu Principal");
                 break;
@@ -138,5 +138,6 @@ function main() {
         }
     }
 }
+
 arrayListaProductos.sort((a, b) => a.id - b.id); //arrayListaProductos.sort();
 main();
